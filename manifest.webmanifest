@@ -1,0 +1,17 @@
+{
+  "name": "Portal Integral FFVV",
+  "short_name": "Portal FFVV",
+  "description": "Acceso directo al Portal Integral de la Fuerza de Ventas.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a2878",
+  "theme_color": "#0a2878",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
