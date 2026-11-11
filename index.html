@@ -35,6 +35,7 @@
     <strong style="font-size:20px">Instalá la app Portal FFVV</strong>
     <button type="button" id="btnInstalar" class="hide" style="background:#2cc4b8;color:#06302d;font-weight:bold;border:0;padding:12px 22px;border-radius:9px;font-size:16px">Instalar en este celular</button>
     <div class="muted hide" id="pasosAndroid">En Chrome: menú <strong>⋮</strong> → <strong>Instalar app</strong> o <strong>Agregar a la pantalla principal</strong>.</div>
+    <div class="muted hide" id="pasosSamsung">En Samsung Internet: tocá el ícono <strong>⬇</strong> de la barra de direcciones → <strong>Instalar</strong>, o menú <strong>☰</strong> → <strong>Agregar página a</strong> → <strong>Pantalla de inicio</strong>.</div>
     <div class="muted hide" id="pasosIos">En Safari: botón <strong>Compartir</strong> (cuadrado con flecha) → <strong>Agregar a inicio</strong> → <strong>Agregar</strong>.</div>
     <span class="muted">Después abrí el portal desde el ícono, como cualquier app.</span>
     <a id="irPortal" href="#" style="background:transparent;color:#cfe0f1;border:1px solid #cfe0f1">Entrar al portal sin instalar</a>
@@ -43,7 +44,7 @@
   <script>
     // ===== CONFIGURACIÓN =====
     // 1. Pegá aquí el enlace del portal (Implementar → Gestionar implementaciones → URL que termina en /exec).
-    const PORTAL_URL = 'PEGAR_AQUI_EL_LINK_DEL_PORTAL';
+    const PORTAL_URL = 'https://script.google.com/macros/s/AKfycbxgkUPbMieAPPYJqkqdW2LG1rQKUCRVUauRI-4WypXDJsrC5o83MqjaVm9jB5iQLUAP/exec';
     // 2. 'directo' = la app abre el portal (recomendado: no requiere cambios en el portal).
     //    'iframe'  = mostraría el portal dentro de la app, pero exige permitir que cualquier
     //                sitio web lo incruste (riesgo de páginas falsas que imiten el ingreso). No usar.
@@ -71,8 +72,8 @@
       document.getElementById('splash').classList.add('hide');
       document.getElementById('instalar').classList.remove('hide');
       document.getElementById('irPortal').href = PORTAL_URL;
-      const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
-      document.getElementById(ios ? 'pasosIos' : 'pasosAndroid').classList.remove('hide');
+      const ua = navigator.userAgent, ios = /iphone|ipad|ipod/i.test(ua), samsung = /SamsungBrowser/i.test(ua);
+      document.getElementById(ios ? 'pasosIos' : samsung ? 'pasosSamsung' : 'pasosAndroid').classList.remove('hide');
     }
     window.addEventListener('online', () => location.reload());
     if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
